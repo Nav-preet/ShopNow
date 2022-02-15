@@ -96,20 +96,19 @@ if($cat_id>0){
 											<div class="category">
 												<div class="ht__cat__thumb">
 													<a href="product.php?id=<?php echo $list['id']?>">
-														<img src="<?php echo PRODUCT_IMAGE_SITE_PATH.$list['image']?>" alt="product images">
+														<img src="<?php echo PRODUCT_IMAGE_SITE_PATH.$list['product_image']?>" alt="product images">
 													</a>
 												</div>
 												<div class="fr__hover__info">
 													<ul class="product__action">
-														<li><a href="javascript:void(0)" onclick="wishlist_manage('<?php echo $list['id']?>','add')"><i class="icon-heart icons"></i></a></li>
 														<li><a href="javascript:void(0)" onclick="manage_cart('<?php echo $list['id']?>','add')"><i class="icon-handbag icons"></i></a></li>
 													</ul>
 												</div>
 												<div class="fr__product__inner">
-													<h4><a href="product-details.html"><?php echo $list['name']?></a></h4>
+													<h4><a href="product-details.html"><?php echo $list['product_name']?></a></h4>
 													<ul class="fr__pro__prize">
-														<li class="old__prize"><?php echo $list['mrp']?></li>
-														<li><?php echo $list['price']?></li>
+														<li class="old__prize">MRP: <del><?php echo $list['mrp']?></del></li>
+														<li>Price: <?php echo $list['price']?></li>
 													</ul>
 												</div>
 											</div>

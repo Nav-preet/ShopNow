@@ -45,4 +45,18 @@ function get_product($con,$limit='',$cat_id='',$product_id='',$search_str='',$so
 	return $data;
 }
 
+function productSoldQtyByProductId($con,$pid){
+	$sql="select sum(order_detail.qty) as qty from order_detail,`order` where `order`.id=order_detail.order_id and order_detail.product_id=$pid and `order`.order_status!=4 and ((`order`.payment_type='payu' and `order`.payment_status='Success') or (`order`.payment_type='COD' and `order`.payment_status!=''))";
+	$res=mysqli_query($con,$sql);
+	$row=mysqli_fetch_assoc($res);
+	return $row['qty'];
+}
+
+function productQty($con,$pid){
+	$sql="select qty from product where id='$pid'";
+	$res=mysqli_query($con,$sql);
+	$row=mysqli_fetch_assoc($res);
+	return $row['qty'];
+}
+
 ?>
