@@ -76,7 +76,7 @@
         scrollSpeed: 900,
         animation: 'fade'
     });
-
+	
 
 /*------------------------------------    
     06. Search Bar

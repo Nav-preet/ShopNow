@@ -12,39 +12,43 @@ while($row=mysqli_fetch_assoc($cat_res)){
 $obj=new add_to_cart();
 $totalProduct=$obj->totalProduct();
 
+	
+$script_name=$_SERVER['SCRIPT_NAME'];
+$script_name_arr=explode('/',$script_name);
+$mypage=$script_name_arr[count($script_name_arr)-1];
+
+$meta_title="Shop Now";
+$meta_desc="Shop Now";
+$meta_keyword="Shop Now";
+$meta_url=SITE_PATH;
+$meta_image="";
+if($mypage=='product.php'){
+	$product_id=get_safe_value($con,$_GET['id']);
+	$product_meta=mysqli_fetch_assoc(mysqli_query($con,"select * from product where id='$product_id'"));
+	$meta_title=$product_meta['meta_title'];
+	$meta_desc=$product_meta['meta_descr'];
+	$meta_keyword=$product_meta['meta_keyword'];
+}if($mypage=='contact.php'){
+	$meta_title='Contact Us';
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Shop Now</title>
-    <meta name="description" content="">
-	<meta name="keywords" content="">
+    <title><?php echo $meta_title?></title>
+    <meta name="description" content="<?php echo $meta_desc?>">
+	<meta name="keywords" content="<?php echo $meta_keyword?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<meta name="title" content="<?php echo $meta_title?>"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/custom.css">
 	<script src="js/vendor/modernizr-3.5.0.min.js"></script>
-	<style>
-	.htc__shopping__cart a span.htc__wishlist {
-		background: #c43b68;
-		border-radius: 100%;
-		color: #fff;
-		font-size: 9px;
-		height: 17px;
-		line-height: 19px;
-		position: absolute;
-		right: 18px;
-		text-align: center;
-		top: -4px;
-		width: 17px;
-		margin-right:15px;
-	}
-	</style>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -60,7 +64,7 @@ $totalProduct=$obj->totalProduct();
                         <div class="menumenu__container clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5"> 
                                 <div class="logo">
-                                     <a href="index.php"><img src="images/logo/4.png" alt="logo images"></a>
+                                     <a href="index.php">SHOP NOW</a>
                                 </div>
                             </div>
                             <div class="col-md-7 col-lg-6 col-sm-5 col-xs-3">
@@ -113,8 +117,8 @@ $totalProduct=$obj->totalProduct();
                                     <div class="header__account">
 										<?php if(isset($_SESSION['USER_LOGIN'])){
 											?>
-											<nav class="navbar navbar-expand-lg navbar-light bg-light">
-											   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+											<nav class="navbar navbar-expand-lg navbar-light bg-light" >
+											   <button style="visibility:hidden;" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 												<span class="navbar-toggler-icon"></span>
 											  </button>
 
@@ -145,12 +149,7 @@ $totalProduct=$obj->totalProduct();
 										
                                     </div>
                                     <div class="htc__shopping__cart">
-										<?php
-										if(isset($_SESSION['USER_ID'])){
-										?>
-										<a href="wishlist.php" class="mr15"><i class="icon-heart icons"></i></a>
-                                        <a href="wishlist.php"><span class="htc__wishlist"><?php echo $wishlist_count?></span></a>
-										<?php } ?>
+									
                                         <a href="cart.php"><i class="icon-handbag icons"></i></a>
                                         <a href="cart.php"><span class="htc__qua"><?php echo $totalProduct?></span></a>
                                     </div>

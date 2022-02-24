@@ -1,18 +1,24 @@
 function send_message(){
+	jQuery('.contact-form-err').html('');
 	var name=jQuery("#name").val();
 	var email=jQuery("#email").val();
 	var mobile=jQuery("#mobile").val();
 	var message=jQuery("#message").val();
-	
+	var is_error='';
 	if(name==""){
-		alert('Please enter name');
-	}else if(email==""){
-		alert('Please enter email');
-	}else if(mobile==""){
-		alert('Please enter mobile');
-	}else if(message==""){
-		alert('Please enter message');
-	}else{
+		jQuery('#name-error').html('Please enter name');
+		is_error='yes';
+	}if(email==""){
+		jQuery('#email-error').html('Please enter email');
+		is_error='yes';
+	}if(mobile==""){
+		jQuery('#mobile-error').html('Please enter mobile');
+		is_error='yes';
+	}if(message==""){
+		jQuery('#msg-error').html('Please enter password');
+		is_error='yes';
+	}
+	if(is_error==''){
 		jQuery.ajax({
 			url:'send_message.php',
 			type:'post',
@@ -123,4 +129,3 @@ function sort_product_drop(cat_id,site_path){
 	var sort_product_id=jQuery('#sort_product_id').val();
 	window.location.href=site_path+"categories.php?id="+cat_id+"&sort="+sort_product_id;
 }
-

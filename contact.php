@@ -1,7 +1,7 @@
 <?php 
 require('top.php');					
 ?>
-<div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/4.jpg) no-repeat scroll center center / cover ;">
+<div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/contact-us.jpg) no-repeat scroll center center / cover ;">
             <div class="ht__bradcaump__wrap">
                 <div class="container">
                     <div class="row">
@@ -72,14 +72,20 @@ require('top.php');
                                 <div class="single-contact-form">
                                     <div class="contact-box name">
                                         <input type="text" id="name" name="name" placeholder="Your Name*">
+										
                                         <input type="email" id="email" name="email" placeholder="Email*">
-										<input type="email" id="mobile" name="mobile" placeholder="Mobile*">
+										
+										<input type="number" id="mobile" name="mobile" placeholder="Mobile*">
                                     </div>
+									<span id="name-error" class="contact-form-err"></span><br/>
+									<span id="email-error" class="contact-form-err"></span><br/>
+									<span id="mobile-error" class="contact-form-err"></span>
                                 </div>
                                 
                                 <div class="single-contact-form">
                                     <div class="contact-box message">
                                         <textarea name="message" id="message" placeholder="Your Message"></textarea>
+										<span id="msg-error" class="contact-form-err"></span>
                                     </div>
                                 </div>
                                 <div class="contact-btn">
@@ -97,7 +103,6 @@ require('top.php');
         <!-- End Contact Area -->
 		<!-- Google Map js -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmGmeot5jcjdaJTvfCmQPfzeoG_pABeWo "></script>
-    <script src="js/contact-map.js"></script>
     <script>
         // When the window has finished loading create our google map below
         google.maps.event.addDomListener(window, 'load', init);
